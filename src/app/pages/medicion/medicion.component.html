@@ -1,0 +1,61 @@
+<div class="col-lg-12">
+	<nb-card>
+  <nb-card-header>
+    Medidores
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustomAction($event)" >
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+</div>
+
+<p-dialog header="Lecturacion" [(visible)]="displayVariante">
+  <!--[modal]="true" [responsive]="true"-->
+          <!--[style]="{width: '820px', minWidth: '300px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">-->
+  <div class="row">
+    <div class="col-md-12">
+      <label><strong>Periodo: </strong>{{socioMedidor.periodoMes}}/{{socioMedidor.periodoAno}} </label>
+    </div>
+    <div class="col-md-6">
+      <label><strong>Socio: </strong>{{socioMedidor.socio}} </label>
+    </div>
+    <div class="col-md-6">
+      <label><strong>Medidor: </strong>{{socioMedidor.medidor}}</label>
+    </div>
+    <div class="col-md-12">
+      <label><strong>Lectura Anterior: </strong>{{socioMedidor.lecturaAct}}</label>
+    </div>
+    <div class="col-md-12">
+      <label><strong>Lectura Actual:</strong> &nbsp; </label><br>
+    <input type="number" step="any" nbInput fullWidth placeholder="lectura Actual" value='0' [(ngModel)]="socioMedidor.lectura">
+    </div>
+    <br>
+    <div class="col-md-12">
+      <button class="btn btn-success" (click)="generar(socioMedidor)">
+        <nb-icon icon="checkmark-square-2"></nb-icon> generar
+      </button>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-md-6">
+      <label><strong>Consumo (m3): </strong>{{socioMedidor.consumo}}</label>
+    </div>
+    <div class="col-md-6">
+      <label><strong>Total: </strong>{{socioMedidor.total}}</label>
+    </div>
+
+  </div>
+  <p-footer>
+    <button class="btn btn-success" (click)="guardar(socioMedidor)">
+      <nb-icon icon="checkmark-square-2"></nb-icon> Aceptar
+    </button>
+    <button class="btn btn-danger" (click)="displayVariante=false">
+      <nb-icon icon="close-square"></nb-icon> Cancelar
+    </button>
+  </p-footer>
+</p-dialog>
+
+<!--[source]="source" (deleteConfirm)="onDeleteConfirm($event)"-->

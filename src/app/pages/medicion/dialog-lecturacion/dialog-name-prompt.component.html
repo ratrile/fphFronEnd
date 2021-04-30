@@ -1,0 +1,11 @@
+<nb-card>
+  <nb-card-header>Lecturacion</nb-card-header>
+  <nb-card-body>
+    <label>Socio:{{servicio.socioMedidor.socio}} </label>
+    <input #name nbInput placeholder="Name">
+  </nb-card-body>
+  <nb-card-footer>
+    <button type="button" class="btn btn-primary" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="submit($event)">Enviar</button>
+  </nb-card-footer>
+</nb-card>
