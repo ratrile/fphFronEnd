@@ -19,19 +19,26 @@ export class MedicionComponent implements OnInit {
     //   createButtonContent: '<i class="nb-checkmark"></i>',
     //   cancelButtonContent: '<i class="nb-close"></i>',
     // },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
+    // edit: {
+    //   editButtonContent: '<i class="nb-edit"></i>',
       // saveButtonContent: '<i class="nb-checkmark"></i>',
       // cancelButtonContent: '<i class="nb-close"></i>',
-    },
+    // },
     // delete: {
     //   deleteButtonContent: '<i class="nb-trash"></i>',
     //   confirmDelete: true,
     // },
     columns: {
-      medidorId: {
+     // medidorId: {
+     //   title: 'IDmedidor',
+     //   type: 'number',
+     //   hide: true,
+        // filter: false,
+     // },
+      idUser: {
         title: 'ID',
         type: 'number',
+        // hide: true,
         // filter: false,
       },
       medidor: {
@@ -141,7 +148,7 @@ onCustomAction(event) {
     viewRecord(event) {
         const fechaMedida = new Date(event.fechaUltimaMedicion);
         if (this.fechaHoy.getMonth() + 1 > fechaMedida.getMonth() + 1 && this.fechaHoy.getFullYear() >= fechaMedida.getFullYear()){
-            console.log(event.socio);
+            console.log(event);
             this.socioMedidor = event;
             this.socioMedidor.fechaMedicion = new Date().toISOString().slice(0, 10);
             this.socioMedidor.periodoMes = new Date().getMonth() + 1;
@@ -186,17 +193,19 @@ onCustomAction(event) {
             this.servicio.showToast( 'danger', 'Notificación', 'No se puede modificar sin hacer una lecturacion previa');
         };
     }
-
+    
+    gen: any = false;
     generar(lectura) {
         console.log(lectura);
         // if(lectura.lectura)
-        if(lectura.lectura > lectura.lecturaAct){
+        if(lectura.lectura >= lectura.lecturaAct){
             this.socioMedidor.consumo = lectura.lectura - lectura.lecturaAct;
             if (this.socioMedidor.consumo <= 5) {
                 this.socioMedidor.total = 20;
             } else {
                 this.socioMedidor.total = this.socioMedidor.consumo * 4;
             }
+            this.gen = true;
         } else{
             this.servicio.showToast( 'warning', 'Notificación', 'El valor de lectura tiene que ser mayor a la lectura actual');
         }
@@ -206,6 +215,7 @@ onCustomAction(event) {
 
     guardar(socioMedidor) {
         // condicion antes de guardar
+        if(this.gen == true){
         console.log(socioMedidor);
         socioMedidor.lecturaAnt = this.socioMedidor.lecturaAct;
         socioMedidor.lecturaAct = this.socioMedidor.lectura;
@@ -237,8 +247,20 @@ onCustomAction(event) {
             );
         }
 
-
-
+        this.servicio.getAllMedidores().subscribe(
+          res => {
+            this.source =  res;
+            console.log(res);
+          },
+          err => {
+            console.log(err);
+          },
+      );
+      this.gen = false;
+      }
+        else{
+          this.servicio.showToast( 'warning', 'Notificación', 'Pulse el Boton Generara para continuar');
+        }
     }
 
 

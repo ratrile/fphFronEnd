@@ -21,6 +21,21 @@ export const MENU_ITEMS: NbMenuItem[] = [
   icon: 'home-outline',
   link: '/pages/medicion',
   },
+  {
+    title: 'Editar Medicion',
+    icon: 'home-outline',
+    link: '/pages/medicionEdit',
+  },
+  {
+    title: 'Cobro',
+    icon: 'home-outline',
+    link: '/pages/cobro',
+  },
+  {
+    title: 'Recibo',
+    icon: 'home-outline',
+    link: '/pages/recibo',
+  },
   /*{
     title: 'Layout',
     icon: 'layout-outline',

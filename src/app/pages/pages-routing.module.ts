@@ -6,6 +6,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { MedicionComponent} from './medicion/medicion.component';
+import { MedicionEditComponent } from './medicion-edit/medicion-edit.component';
+import { CobroComponent } from './cobro/cobro.component';
+import {ReciboImprimirComponent} from './cobro/recibo-imprimir/recibo-imprimir.component';
+import {DuplicadoReciboComponent} from './cobro/duplicado-recibo/duplicado-recibo.component';
 
 const routes: Routes = [{
   path: '',
@@ -70,9 +74,24 @@ const routes: Routes = [{
         .then(m => m.MiscellaneousModule),
     },
     {
-
       path: 'medicion',
       component: MedicionComponent,
+    },
+    {
+      path: 'medicionEdit',
+      component: MedicionEditComponent,
+    },
+    {
+      path: 'cobro',
+      component: CobroComponent,
+    },
+    {
+      path: 'recibo',
+      component: ReciboImprimirComponent,
+    },
+    {
+      path: 'duplicado',
+      component: DuplicadoReciboComponent,
     },
     {
       path: '',
@@ -84,7 +103,8 @@ const routes: Routes = [{
       component: NotFoundComponent,
     },
   ],
-}];
+},
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

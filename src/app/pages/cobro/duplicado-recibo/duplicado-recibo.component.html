@@ -1,0 +1,421 @@
+<div class="row" id="imprimir" #imprimir>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-3">
+                <img src="../../../../assets/images/logo.jpg" class="rounded float-left" width="80" height="70">
+            </div>
+            <div class="col-6 text-center">
+                <label>Comité de Agua Tacopoca Alta</label> <br>
+                <strong>RECIBO DE PAGO DE AGUA</strong>
+            </div>
+            <div class="col-3">
+                <label><strong>Nº: </strong> {{duplicado.idRecibo}} </label> <br>
+                <label><strong>Id: </strong> {{duplicado.id}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label><strong>Fecha: </strong> {{duplicado.fechaRecivo}} </label>
+            </div>
+            <div class="col-6">
+                <label><strong>Medidor: </strong> {{duplicado.numero}} </label>
+            </div>
+            <div class="col-6">
+                <label><strong>Socio: </strong> {{duplicado.name}} </label>
+            </div>
+            <div class="col-6">
+                <label><strong>Periodo: </strong> {{duplicado.mes}}/{{duplicado.anio}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-9  text-center" style="background-color: slategrey;">
+                <label><strong>Detalle </strong></label>
+            </div>
+            <div class="col-3 text-center" style="background-color: darkgrey;">
+                <label><strong>Importe Bs</strong></label>
+            </div>
+            <div class="col-10">
+                <label><strong>Consumo ({{duplicado.consumo}} M3) </strong></label>
+            </div>
+            <div class="col-2 text-right">
+                <label><strong>{{duplicado.total}}</strong></label>
+            </div>
+            <div class="col-10">
+                <label><strong>Multa Mora </strong></label>
+            </div>
+            <div class="col-2 text-right">
+                <label><strong>{{duplicado.mora}}</strong></label>
+            </div>
+            <div class="col-10">
+                <label><strong>Multa Corte/Reconexion </strong></label>
+            </div>
+            <div class="col-2 text-right">
+                <label><strong>{{duplicado.corte}}</strong></label>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="col-9  text-right" style="background-color: slategrey;">
+                <label><strong>Total </strong></label>
+            </div>
+            <div class="col-3 text-right" style="background-color: darkgrey;">
+                <label><strong>{{duplicado.totalFinal}}</strong></label>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <label><strong>Son:</strong> {{letras}}</label>
+            </div>
+            <div class="col-12 text-center">
+                <label>"El agua es vida cuidala"</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <p-table id="export" #dt [value]="listMedidorMedidicon" [autoLayout]="true" [rows]="10">
+            <ng-template pTemplate="caption">
+                <div style="text-align: right;">
+                    <h3 class=" text-center"> HISTORIAL DE CONSUMO </h3>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col">Lecturacion</th>
+                    <th scope="col">Periodo</th>
+                    <th scope="col">Consumo</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Pagado</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.lecturaAct }}</td>
+                    <td>{{ row.mes }} / {{row.anio}}</td>
+                    <td>{{ row.consumo }}</td>
+                    <td>{{ row.total }}</td>
+                    <td *ngIf="row.pagado==0">NO</td>
+                    <td *ngIf="row.pagado==1">SI</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="row">
+        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    </div>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-3">
+                <img src="../../../../assets/images/logo.jpg" class="rounded float-left" width="80" height="70">
+            </div>
+            <div class="col-6 text-center">
+                <label>Comité de Agua Tacopoca Alta</label> <br>
+                <strong>RECIBO DE PAGO DE AGUA</strong>
+            </div>
+            <div class="col-3">
+                <label><strong>Nº: </strong> {{duplicado.idRecibo}} </label> <br>
+                <label><strong>Id: </strong> {{duplicado.id}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label><strong>Fecha: </strong> {{duplicado.fechaRecivo}} </label>
+            </div>
+            <div class="col-6">
+                <label><strong>Medidor: </strong> {{duplicado.numero}} </label>
+            </div>
+            <div class="col-6">
+                <label><strong>Socio: </strong> {{duplicado.name}} </label>
+            </div>
+            <div class="col-6">
+                <label><strong>Periodo: </strong> {{duplicado.mes}}/{{duplicado.anio}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-9  text-center" style="background-color: slategrey;">
+                <label><strong>Detalle </strong></label>
+            </div>
+            <div class="col-3 text-center" style="background-color: darkgrey;">
+                <label><strong>Importe Bs</strong></label>
+            </div>
+            <div class="col-10">
+                <label><strong>Consumo ({{duplicado.consumo}} M3) </strong></label>
+            </div>
+            <div class="col-2 text-right">
+                <label><strong>{{duplicado.total}}</strong></label>
+            </div>
+            <div class="col-10">
+                <label><strong>Multa Mora </strong></label>
+            </div>
+            <div class="col-2 text-right">
+                <label><strong>{{duplicado.mora}}</strong></label>
+            </div>
+            <div class="col-10">
+                <label><strong>Multa Corte/Reconexion </strong></label>
+            </div>
+            <div class="col-2 text-right">
+                <label><strong>{{duplicado.corte}}</strong></label>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="col-9  text-right" style="background-color: slategrey;">
+                <label><strong>Total </strong></label>
+            </div>
+            <div class="col-3 text-right" style="background-color: darkgrey;">
+                <label><strong>{{duplicado.totalFinal}}</strong></label>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <label><strong>Son:</strong> {{letras}}</label>
+            </div>
+            <div class="col-12 text-center">
+                <label>"El agua es vida cuidala"</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <p-table id="export" #dt [value]="listMedidorMedidicon" [autoLayout]="true" [rows]="10">
+            <ng-template pTemplate="caption">
+                <div style="text-align: right;">
+                    <h3 class=" text-center"> HISTORIAL DE CONSUMO </h3>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col">Lecturacion</th>
+                    <th scope="col">Periodo</th>
+                    <th scope="col">Consumo</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Pagado</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.lecturaAct }}</td>
+                    <td>{{ row.mes }} / {{row.anio}}</td>
+                    <td>{{ row.consumo }}</td>
+                    <td>{{ row.total }}</td>
+                    <td *ngIf="row.pagado==0">NO</td>
+                    <td *ngIf="row.pagado==1">SI</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="row">
+        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    </div>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-3">
+                <img src="../../../../assets/images/logo.jpg" class="rounded float-left" width="80" height="70">
+            </div>
+            <div class="col-6 text-center">
+                <label>Comité de Agua Tacopoca Alta</label> <br>
+                <strong>RECIBO DE PAGO DE AGUA</strong>
+            </div>
+            <div class="col-3">
+                <label><strong>Nº: </strong> {{duplicado.idRecibo}} </label> <br>
+                <label><strong>Id: </strong> {{duplicado.id}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label><strong>Fecha: </strong> {{duplicado.fechaRecivo}} </label>
+            </div>
+            <div class="col-6">
+                <label><strong>Medidor: </strong> {{duplicado.numero}} </label>
+            </div>
+            <div class="col-6">
+                <label><strong>Socio: </strong> {{duplicado.name}} </label>
+            </div>
+            <div class="col-6">
+                <label><strong>Periodo: </strong> {{duplicado.mes}}/{{duplicado.anio}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-9  text-center" style="background-color: slategrey;">
+                <label><strong>Detalle </strong></label>
+            </div>
+            <div class="col-3 text-center" style="background-color: darkgrey;">
+                <label><strong>Importe Bs</strong></label>
+            </div>
+            <div class="col-10">
+                <label><strong>Consumo ({{duplicado.consumo}} M3) </strong></label>
+            </div>
+            <div class="col-2 text-right">
+                <label><strong>{{duplicado.total}}</strong></label>
+            </div>
+            <div class="col-10">
+                <label><strong>Multa Mora </strong></label>
+            </div>
+            <div class="col-2 text-right">
+                <label><strong>{{duplicado.mora}}</strong></label>
+            </div>
+            <div class="col-10">
+                <label><strong>Multa Corte/Reconexion </strong></label>
+            </div>
+            <div class="col-2 text-right">
+                <label><strong>{{duplicado.corte}}</strong></label>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="col-9  text-right" style="background-color: slategrey;">
+                <label><strong>Total </strong></label>
+            </div>
+            <div class="col-3 text-right" style="background-color: darkgrey;">
+                <label><strong>{{duplicado.totalFinal}}</strong></label>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <label><strong>Son:</strong> {{letras}}</label>
+            </div>
+            <div class="col-12 text-center">
+                <label>"El agua es vida cuidala"</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <p-table id="export" #dt [value]="listMedidorMedidicon" [autoLayout]="true" [rows]="10">
+            <ng-template pTemplate="caption">
+                <div style="text-align: right;">
+                    <h3 class=" text-center"> HISTORIAL DE CONSUMO </h3>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col">Lecturacion</th>
+                    <th scope="col">Periodo</th>
+                    <th scope="col">Consumo</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Pagado</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.lecturaAct }}</td>
+                    <td>{{ row.mes }} / {{row.anio}}</td>
+                    <td>{{ row.consumo }}</td>
+                    <td>{{ row.total }}</td>
+                    <td *ngIf="row.pagado==0">NO</td>
+                    <td *ngIf="row.pagado==1">SI</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="row">
+        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    </div>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-3">
+                <img src="../../../../assets/images/logo.jpg" class="rounded float-left" width="80" height="70">
+            </div>
+            <div class="col-6 text-center">
+                <label>Comité de Agua Tacopoca Alta</label> <br>
+                <strong>RECIBO DE PAGO DE AGUA</strong>
+            </div>
+            <div class="col-3">
+                <label><strong>Nº: </strong> {{duplicado.idRecibo}} </label> <br>
+                <label><strong>Id: </strong> {{duplicado.id}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label><strong>Fecha: </strong> {{duplicado.fechaRecivo}} </label>
+            </div>
+            <div class="col-6">
+                <label><strong>Medidor: </strong> {{duplicado.numero}} </label>
+            </div>
+            <div class="col-6">
+                <label><strong>Socio: </strong> {{duplicado.name}} </label>
+            </div>
+            <div class="col-6">
+                <label><strong>Periodo: </strong> {{duplicado.mes}}/{{duplicado.anio}} </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-9  text-center" style="background-color: slategrey;">
+                <label><strong>Detalle </strong></label>
+            </div>
+            <div class="col-3 text-center" style="background-color: darkgrey;">
+                <label><strong>Importe Bs</strong></label>
+            </div>
+            <div class="col-10">
+                <label><strong>Consumo ({{duplicado.consumo}} M3) </strong></label>
+            </div>
+            <div class="col-2 text-right">
+                <label><strong>{{duplicado.total}}</strong></label>
+            </div>
+            <div class="col-10">
+                <label><strong>Multa Mora </strong></label>
+            </div>
+            <div class="col-2 text-right">
+                <label><strong>{{duplicado.mora}}</strong></label>
+            </div>
+            <div class="col-10">
+                <label><strong>Multa Corte/Reconexion </strong></label>
+            </div>
+            <div class="col-2 text-right">
+                <label><strong>{{duplicado.corte}}</strong></label>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="col-9  text-right" style="background-color: slategrey;">
+                <label><strong>Total </strong></label>
+            </div>
+            <div class="col-3 text-right" style="background-color: darkgrey;">
+                <label><strong>{{duplicado.totalFinal}}</strong></label>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <label><strong>Son:</strong> {{letras}}</label>
+            </div>
+            <div class="col-12 text-center">
+                <label>"El agua es vida cuidala"</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <p-table id="export" #dt [value]="listMedidorMedidicon" [autoLayout]="true" [rows]="10">
+            <ng-template pTemplate="caption">
+                <div style="text-align: right;">
+                    <h3 class=" text-center"> HISTORIAL DE CONSUMO </h3>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col">Lecturacion</th>
+                    <th scope="col">Periodo</th>
+                    <th scope="col">Consumo</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Pagado</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.lecturaAct }}</td>
+                    <td>{{ row.mes }} / {{row.anio}}</td>
+                    <td>{{ row.consumo }}</td>
+                    <td>{{ row.total }}</td>
+                    <td *ngIf="row.pagado==0">NO</td>
+                    <td *ngIf="row.pagado==1">SI</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <button  class="btn btn-success" (click)="pdf()">
+        Imprimir
+    </button>
+</div>

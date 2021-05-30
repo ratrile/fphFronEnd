@@ -13,7 +13,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {AccordionModule} from 'primeng/accordion';
 import { FormsModule } from '@angular/forms';
+import {TableModule} from 'primeng/table';
 // import {MenuItem} from 'primeng/api';
+// import {NumerosALetras} from 'node_modules/numero-a-letras/build/numeroaletras.js';
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -47,6 +49,8 @@ import {
     AccordionModule,
     FormsModule,
     // MenuItem,
+    TableModule,
+    // NumerosALetras,
   ],
   bootstrap: [AppComponent],
 })

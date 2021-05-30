@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule } from '@nebular/theme';
+import { NbMenuModule, NbActionsModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -16,8 +16,16 @@ import { DialogNamePromptComponent } from  './medicion/dialog-lecturacion/dialog
 
 import {AccordionModule} from 'primeng/accordion';
 import {DialogModule} from 'primeng/dialog';
+import {TableModule} from 'primeng/table';
 import { FormsModule } from '@angular/forms';
  import {MenuItem} from 'primeng/api';
+import { MedicionEditComponent } from './medicion-edit/medicion-edit.component';
+import { CobroComponent } from './cobro/cobro.component';
+import { ReciboImprimirComponent } from './cobro/recibo-imprimir/recibo-imprimir.component';
+import { NgxPrintModule } from 'ngx-print';
+import {ListboxModule} from 'primeng/listbox';
+import {DropdownModule} from 'primeng/dropdown';
+import { DuplicadoReciboComponent } from './cobro/duplicado-recibo/duplicado-recibo.component';
 
 @NgModule({
   imports: [
@@ -35,11 +43,20 @@ import { FormsModule } from '@angular/forms';
     AccordionModule,
     DialogModule,
     FormsModule,
+    TableModule,
+    NbActionsModule,
+    NgxPrintModule,
+    ListboxModule,
+    DropdownModule,
   ],
   declarations: [
     PagesComponent,
     MedicionComponent,
     DialogNamePromptComponent,
+    MedicionEditComponent,
+    CobroComponent,
+    ReciboImprimirComponent,
+    DuplicadoReciboComponent,
   ],
 })
 export class PagesModule {

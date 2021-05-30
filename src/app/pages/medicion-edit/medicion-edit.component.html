@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-md-2">
+        <label >Seleccione Mes y Año:</label>
+    </div>
+    <div class="col-md-2">
+        <!--<label class="label">Mes: </label>-->
+        <!--<p-listbox [options]="mes" [(ngModel)]="data.mes" optionLabel="name"></p-listbox>-->
+        <p-dropdown [options]="mes" [(ngModel)]="data.mes" optionLabel="name" placeholder="Mes"></p-dropdown>
+        <!--<input type="number" step="any" nbInput fullWidth placeholder="1-12" [(ngModel)]="data.mes" value='0'>-->
+    </div>
+    <div class="col-md-2">
+        <!--<label class="label">Año: </label>-->
+        <!--<p-listbox [options]="anio" [(ngModel)]="data.anio" optionLabel="name"></p-listbox>-->
+        <p-dropdown [options]="anio" [(ngModel)]="data.anio" optionLabel="name" placeholder="Año"></p-dropdown>
+        <!--<input type="number" step="any" nbInput fullWidth placeholder="Ejm. 2021" [(ngModel)]="data.anio" value='0'>-->
+    </div>
+    <div class="col-md-6" style="align-self: flex-end">
+        <button class="btn btn-success" (click)="buscar(data)">
+            <nb-icon icon="checkmark-square-2"></nb-icon> Buscar
+        </button>
+    </div>
+
+    <div class="col-md-12">
+        <nb-card>
+            <nb-card-header>
+                Lecturacion {{data.mes.name}} / {{data.anio.name}}
+            </nb-card-header>
+            <nb-card-body>
+                <ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustomAction($event)" >
+                </ng2-smart-table>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+
+<p-dialog header="Lecturacion" [(visible)]="displayVariante">
+    <!--[modal]="true" [responsive]="true"-->
+    <!--[style]="{width: '820px', minWidth: '300px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">-->
+    <div class="row">
+        <div class="col-md-12">
+            <label><strong>Periodo: </strong>{{socioMedidor.periodoMes}}/{{socioMedidor.periodoAno}} </label>
+        </div>
+        <div class="col-md-6">
+            <label><strong>Socio: </strong>{{socioMedidor.socio}} </label>
+        </div>
+        <div class="col-md-6">
+            <label><strong>Medidor: </strong>{{socioMedidor.numero}}</label>
+        </div>
+        <div class="col-md-12">
+            <label><strong>Lectura Anterior: </strong>{{socioMedidor.lecturaAnt}}</label>
+        </div>
+        <div class="col-md-12">
+            <label><strong>Lectura Actual:</strong> &nbsp; </label><br>
+            <input type="number" step="any" nbInput fullWidth placeholder="lectura Actual" value='0' [(ngModel)]="socioMedidor.lecturaAct">
+        </div>
+        <br>
+        <div class="col-md-12">
+            <button class="btn btn-success" (click)="generar(socioMedidor)">
+                <nb-icon icon="checkmark-square-2"></nb-icon> generar
+            </button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <label><strong>Consumo (m3): </strong>{{socioMedidor.consumo}}</label>
+        </div>
+        <div class="col-md-6">
+            <label><strong>Total: </strong>{{socioMedidor.total}}</label>
+        </div>
+
+    </div>
+    <p-footer>
+        <button class="btn btn-success" (click)="guardar(socioMedidor)">
+            <nb-icon icon="checkmark-square-2"></nb-icon> Aceptar
+        </button>
+        <button class="btn btn-danger" (click)="displayVariante=false">
+            <nb-icon icon="close-square"></nb-icon> Cancelar
+        </button>
+    </p-footer>
+</p-dialog>
+

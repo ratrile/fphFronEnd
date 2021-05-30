@@ -12,7 +12,7 @@ import {
 })
 export class ServicioService {
 
-  socioMedidor: any = {};
+  cobro: any = {};
 
   constructor(private http: HttpClient,  private toastrService: NbToastrService) { }
 
@@ -32,6 +32,36 @@ export class ServicioService {
     return this.http.put(`api/medicion/lecturaModifica` , obj);
   }
 
+  updateMedicionPerido(mes, anio):Observable<any> {
+    // console.log(mes, anio);
+    return this.http.get(`api/medicion/editar/${mes}/${anio}`);
+  }
+
+  listaMedidorUsuario():Observable<any> {
+    return this.http.get(`api/medicion/lista-ususrio-medidor`);
+  }
+
+  listaMedidorMedicion(idMedidor):Observable<any> {
+    return this.http.get(`api/recibo/lista-medidor-medicion/${idMedidor}`);
+  }
+
+  cabezeraRecibo(idMedicion):Observable<any> {
+    return this.http.get(`api/recibo/cobro/cuerpo/${idMedicion}`);
+  }
+
+  cobroImprimir(obj: any): Observable<any> {
+    return this.http.post(`api/recibo/cobro` , obj);
+  }
+  // modificarMedicionPagado(obj: any): Observable<any> {
+  //   return this.http.put(`api/recibo/cobro` , obj);
+  // }
+  maxId():Observable<any> {
+    return this.http.get(`api/recibo/cobro/max-id`);
+  }
+
+  reciboImprimirDuplicado(idMedicion):Observable<any> {
+    return this.http.get(`api/recibo/impimirCopia/${idMedicion}`);
+  }
   showToast(type: NbComponentStatus, title: string, body: string) {
     const config = {
       status: type,
