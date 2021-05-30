@@ -86,10 +86,10 @@ export class DuplicadoReciboComponent implements OnInit {
     // Extraemos el
     const title = this.duplicado.idRecibo + ".pdf"
     const DATA = document.getElementById('imprimir');
-    const doc = new jsPDF('p', 'pt', 'a4');
+    const doc = new jsPDF('p', 'pt', [624,794]);
     const options = {
       background: 'white',
-      scale: 3
+      scale: 1
     };
     html2canvas(DATA, options).then((canvas) => {
 
@@ -97,14 +97,17 @@ export class DuplicadoReciboComponent implements OnInit {
 
       // Add image Canvas to PDF
       const bufferX = 15;
-      const bufferY = 15;
+      const bufferY = 0;
       const imgProps = (doc as any).getImageProperties(img);
       const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, 199, undefined, 'FAST');
       return doc;
     }).then((docResult) => {
       docResult.save(title);
+      setTimeout(()=>{
+        this.router.navigate(['/pages/cobro']);
+      },1000);
     });
   }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {NumerosALetras} from '../../../../../node_modules/numero-a-letras/build/numeroaletras.js';
 import { ServicioService } from '../../../servicio/servicio.service';
 // import * as jsPDF from 'jspdf';
-import { jsPDF} from 'jspdf';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import * as moment from 'moment/moment';
 import { Router } from '@angular/router';
 // import * as jsPDF from "jspdf";
@@ -90,9 +91,16 @@ export class ReciboImprimirComponent implements OnInit {
           res => {
               // this.listMedidorMedidicon =  res;
               this.cabezaRecibo.idRecibo = res.id;
-              setTimeout(()=>{
-                this.pdf();
-              },1000);
+              this.servicio.listaMedidorMedicion(this.servicio.cobro.id_medidor).subscribe(
+                res1 => {
+                  this.listMedidorMedidicon =  res1;
+                  this.pdf();
+                  console.log(res1);
+                },
+                err => {
+                  console.log(err);
+                },
+            );
               // this.pdf();
               console.log(res);
 
@@ -103,27 +111,33 @@ export class ReciboImprimirComponent implements OnInit {
       );
   }
 
-     pdf(){
-     // await this.pagarImprimir();
-      const title = this.cabezaRecibo.idRecibo + ".pdf"
-      console.log('aqui');
-      const doc = new jsPDF('p','pt','a4');
-      doc.html(this.imprimir.nativeElement,{
-          html2canvas: {
-              scale: 0.75,
-              width: 595.28,
-              height: 841.89,
-          },
-          margin: 5,
-          callback: (pdf) => {
-              pdf.autoPrint();
-              pdf.save(title);
-          }
-      });
+  pdf() {
+    // Extraemos el
+    const title = this.cabezaRecibo.idRecibo + ".pdf"
+    const DATA = document.getElementById('imprimir');
+    const doc = new jsPDF('p', 'pt', [624,794]);
+    const options = {
+      background: 'white',
+      scale: 1
+    };
+    html2canvas(DATA, options).then((canvas) => {
 
+      const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+      const bufferX = 15;
+      const bufferY = 0;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, 397, undefined, 'FAST');
+      return doc;
+    }).then((docResult) => {
+      docResult.save(title);
       setTimeout(()=>{
         this.router.navigate(['/pages/cobro']);
       },1000);
+    });
   }
 
 }
