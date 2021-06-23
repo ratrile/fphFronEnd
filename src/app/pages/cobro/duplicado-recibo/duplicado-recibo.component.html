@@ -73,7 +73,7 @@
         </div>
     </div>
     <div class="col-6">
-        <p-table id="export" #dt [value]="listMedidorMedidicon" [autoLayout]="true" [rows]="10">
+        <p-table id="export" #dt [value]="listMedidorMedidicon" styleClass="p-datatable-sm" [autoLayout]="true" [rows]="10">
             <ng-template pTemplate="caption">
                 <div style="text-align: right;">
                     <h3 class=" text-center"> HISTORIAL DE CONSUMO </h3>
@@ -81,7 +81,8 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th scope="col">Lecturacion</th>
+                    <th scope="col">Lec Ant</th>
+                    <th scope="col">Lec Act</th>
                     <th scope="col">Periodo</th>
                     <th scope="col">Consumo</th>
                     <th scope="col">Total</th>
@@ -90,6 +91,7 @@
             </ng-template>
             <ng-template pTemplate="body" let-row>
                 <tr>
+                    <td>{{ row.lecturaAnt }}</td>
                     <td>{{ row.lecturaAct }}</td>
                     <td>{{ row.mes }} / {{row.anio}}</td>
                     <td>{{ row.consumo }}</td>

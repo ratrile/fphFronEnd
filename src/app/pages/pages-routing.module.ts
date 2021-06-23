@@ -10,6 +10,8 @@ import { MedicionEditComponent } from './medicion-edit/medicion-edit.component';
 import { CobroComponent } from './cobro/cobro.component';
 import {ReciboImprimirComponent} from './cobro/recibo-imprimir/recibo-imprimir.component';
 import {DuplicadoReciboComponent} from './cobro/duplicado-recibo/duplicado-recibo.component';
+import { UsuarioComponent } from './usuario/usuario.component'
+import { CuentaComponent } from './cuenta/cuenta.component'
 
 const routes: Routes = [{
   path: '',
@@ -92,6 +94,14 @@ const routes: Routes = [{
     {
       path: 'duplicado',
       component: DuplicadoReciboComponent,
+    },
+    {
+      path: 'usuario',
+      component: UsuarioComponent,
+    },
+    {
+      path: 'cuenta',
+      component: CuentaComponent,
     },
     {
       path: '',

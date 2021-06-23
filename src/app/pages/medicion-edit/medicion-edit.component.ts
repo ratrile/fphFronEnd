@@ -100,6 +100,7 @@ export class MedicionEditComponent implements OnInit {
       {name: 12},
     ]
   }
+  
   mes1 : any;
   anio1: any;
   buscar(data) {
@@ -158,6 +159,7 @@ export class MedicionEditComponent implements OnInit {
     // };
   }
 
+  gen: any = false;
   generar(lectura) {
     console.log(lectura);
     // if(lectura.lectura)
@@ -168,6 +170,7 @@ export class MedicionEditComponent implements OnInit {
       } else {
         this.socioMedidor.total = this.socioMedidor.consumo * 4;
       }
+      this.gen = true;
     } else{
       this.servicio.showToast( 'warning', 'Notificación', 'El valor de lectura tiene que ser mayor a la lectura actual');
     }
@@ -178,6 +181,7 @@ export class MedicionEditComponent implements OnInit {
   guardar(socioMedidor) {
     // condicion antes de guardar
     console.log(socioMedidor);
+    if(this.gen == true){
     socioMedidor.lecturaAnt = this.socioMedidor.lecturaAnt;
     socioMedidor.lecturaAct = this.socioMedidor.lecturaAct;
     // socioMedidor.pagado = 0;
@@ -196,14 +200,18 @@ export class MedicionEditComponent implements OnInit {
       );
     // }
     this.servicio.updateMedicionPerido(this.mes1, this.anio1).subscribe(
-      res => {
-        this.source =  res;
-        console.log(res);
-      },
-      err => {
-        console.log(err);
-      },
-  );
+        res => {
+          this.source =  res;
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        },
+      );
+      this.gen = false;
+      }else{
+        this.servicio.showToast( 'warning', 'Notificación', 'Pulse el Boton Generara para continuar');
+      }
 
 
 

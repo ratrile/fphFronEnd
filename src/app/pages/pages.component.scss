@@ -4,6 +4,10 @@
   ::ng-deep router-outlet + * {
     display: block;
     animation: fade 1s;
+    
+    nb-layout-column {
+      padding: 0 !important;
+    }
 
     @keyframes fade {
       from {
@@ -16,3 +20,5 @@
     }
   }
 }
+
+

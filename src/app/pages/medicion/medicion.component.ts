@@ -146,8 +146,11 @@ onCustomAction(event) {
     socioMedidor: any = {};
     fechaHoy = new Date();
     viewRecord(event) {
+     console.log( Number(new Date('1985-01-01')));
+     
         const fechaMedida = new Date(event.fechaUltimaMedicion);
-        if (this.fechaHoy.getMonth() + 1 > fechaMedida.getMonth() + 1 && this.fechaHoy.getFullYear() >= fechaMedida.getFullYear()){
+        console.log( Number(fechaMedida));
+        if ( this.fechaHoy.getMonth()+1 > fechaMedida.getMonth()+1 && this.fechaHoy.getFullYear() >= fechaMedida.getFullYear()){
             console.log(event);
             this.socioMedidor = event;
             this.socioMedidor.fechaMedicion = new Date().toISOString().slice(0, 10);
@@ -163,10 +166,25 @@ onCustomAction(event) {
             // this.dialogService.open(DialogNamePromptComponent, { context: event});
             //     // .onClose.subscribe(name => name && this.names.push(name));
         }
-
+        
         if( this.fechaHoy.getMonth() + 1 <= fechaMedida.getMonth() + 1 && this.fechaHoy.getFullYear() <= fechaMedida.getFullYear()){
             this.servicio.showToast( 'danger', 'Notificación', 'No se pudo hacer dos lecturas en el mismo periodo modifique la lecturacion de este periodo');
         };
+        console.log(fechaMedida);
+        console.log(new Date('1985-01-01'));
+        if(Number(fechaMedida) == Number(new Date('1985-01-01'))){
+          console.log(event);
+          this.socioMedidor = event;
+          this.socioMedidor.fechaMedicion = new Date().toISOString().slice(0, 10);
+          this.socioMedidor.periodoMes = new Date().getMonth() + 1;
+          this.socioMedidor.periodoAno = new Date().getFullYear();
+          this.socioMedidor.total = 0;
+          this.socioMedidor.consumo = 0;
+          this.socioMedidor.flag = 0;
+          console.log(this.socioMedidor.fechaMedicion);
+          // this.socioMedidor.lectura = 0;
+          this.displayVariante = true;
+        }
     }
 
     editRecord(event) {
@@ -191,6 +209,9 @@ onCustomAction(event) {
 
         if( this.fechaHoy.getMonth() + 1 > fechaMedida.getMonth() + 1 && this.fechaHoy.getFullYear() >= fechaMedida.getFullYear()){
             this.servicio.showToast( 'danger', 'Notificación', 'No se puede modificar sin hacer una lecturacion previa');
+        };
+        if(Number(fechaMedida) == Number(new Date('1985-01-01'))){
+          this.servicio.showToast( 'danger', 'Notificación', 'No se puede modificar sin hacer una lecturacion previa');
         };
     }
     

@@ -9,7 +9,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
   title: 'Usuarios',
   icon: 'home-outline',
-  link: '/pages/dashboard',
+  link: '/pages/usuario',
   },
   {
   title: 'Medidor',
@@ -35,6 +35,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Recibo',
     icon: 'home-outline',
     link: '/pages/recibo',
+  },
+  {
+    title: 'Cuenta',
+    icon: 'home-outline',
+    link: '/pages/cuenta',
   },
   /*{
     title: 'Layout',

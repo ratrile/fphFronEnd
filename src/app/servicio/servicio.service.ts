@@ -62,6 +62,15 @@ export class ServicioService {
   reciboImprimirDuplicado(idMedicion):Observable<any> {
     return this.http.get(`api/recibo/impimirCopia/${idMedicion}`);
   }
+
+  createUsuario(obj: any){
+    return this.http.post(`api/usuario/crear`, obj);
+  }
+
+  updateUsuario(obj: any){
+    return this.http.post(`api/usuario/editar`, obj);
+  }
+
   showToast(type: NbComponentStatus, title: string, body: string) {
     const config = {
       status: type,

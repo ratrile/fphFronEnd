@@ -1,0 +1,93 @@
+<nb-card>
+    <nb-card-header>
+        <div class="row">
+            <div class="col-md-1" style="max-width: 36px">
+                <nb-actions size="small">
+                    <!--<nb-action <i class="ion-android-clipboard"></i> (click)="editar(row)"></nb-action>-->
+                    <nb-action  style="padding: inherit;" icon="plus-circle-outline" (click)="nuevo()"></nb-action>
+                </nb-actions>
+            </div>
+            <div class="col-md-11">Lista de Socios</div>
+        </div>
+        
+        
+    </nb-card-header>
+    <nb-card-body>
+        <p-table id="export" #dt [value]="ListaDeUsuario" selectionMode="single" [autoLayout]="true" [paginator]="true" [rows]="10"
+            [globalFilterFields]="['idUsuario','name','ci', 'direccion','numero']">
+            <ng-template pTemplate="caption">
+                <div style="text-align: right;">
+                    <i class="fa fa-search" style="margin:4px 4px 0 0;"></i>
+                    <input type="text" pInputText size="50" placeholder="Id, Nombre, CI, Direccion, Medidor"
+                           (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto;">
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">CI</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Medidor</th>
+                    <!--<th scope="col">Sucursal</th>-->
+                    <!-- <th scope="col">Descuento Promo %</th> -->
+                    <!--<th scope="col">Foto</th>-->
+                    <th scope="col">Acción </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.idUsuario }}</td>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.ci }}</td>
+                    <td>{{ row.direccion }}</td>
+                    <td>{{ row.numero }}</td>
+                    <td>
+                        <nb-actions size="small">
+                            <!--<nb-action <i class="ion-android-clipboard"></i> (click)="editar(row)"></nb-action>-->
+                            <nb-action  style="padding: inherit;" icon="clipboard-outline" (click)="editar(row)"></nb-action>
+                        </nb-actions>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </nb-card-body>
+</nb-card>
+
+<p-dialog header="{{nombreAccion}} Ususario" [(visible)]="display"  [style]="{width: '440px', height: '530px'}">
+    <div class="row">
+        <div class="col-md-12">
+           <nb-card >
+                <nb-card-body class="margenInferior"> 
+                  <div class="row">
+                    <div class="col-md-12">
+                        <label class="label"><h4>Usuario</h4></label>
+                    </div>        
+                    <div class="col-md-12">
+                        <label class="label">Nombre:</label>
+                        <input type="text"   nbInput fullWidth fieldSize="tiny" [(ngModel)]="usuario.name">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="label">CI:</label>
+                        <input type="number" nbInput fullWidth fieldSize="tiny" [(ngModel)]="usuario.ci">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="label">Direccion:</label>
+                        <input type="text" nbInput fullWidth fieldSize="tiny" [(ngModel)]="usuario.direccion">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="label"><h4>Medidor</h4></label>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="label">Serie:</label>
+                        <input type="text" nbInput fullWidth fieldSize="tiny" [(ngModel)]="usuario.numero">
+                    </div>
+                  </div>
+               </nb-card-body>
+            </nb-card>
+        </div>
+            <div class="col-md-4 " *ngIf="nombreAccion == 'Agregar'"><button nbButton hero status="success" (click)="GuardarUsuarioTrue(usuario)">Guardar</button></div>
+            <div class="col-md-4 " *ngIf="nombreAccion == 'Editar'"><button nbButton hero status="success" (click)="EditarUsuarioTrue(usuario)">Guardar</button></div>
+            <div class="col-md-2 "><button nbButton hero status="danger" (click)="cancelarGuardarUsuario()">Cancelar</button></div>
+    </div>
+</p-dialog>

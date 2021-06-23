@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule, NbActionsModule } from '@nebular/theme';
+import { NbMenuModule, NbActionsModule,  NbButtonModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -26,6 +26,8 @@ import { NgxPrintModule } from 'ngx-print';
 import {ListboxModule} from 'primeng/listbox';
 import {DropdownModule} from 'primeng/dropdown';
 import { DuplicadoReciboComponent } from './cobro/duplicado-recibo/duplicado-recibo.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { CuentaComponent } from './cuenta/cuenta.component';
 
 @NgModule({
   imports: [
@@ -48,6 +50,7 @@ import { DuplicadoReciboComponent } from './cobro/duplicado-recibo/duplicado-rec
     NgxPrintModule,
     ListboxModule,
     DropdownModule,
+    NbButtonModule,
   ],
   declarations: [
     PagesComponent,
@@ -57,6 +60,8 @@ import { DuplicadoReciboComponent } from './cobro/duplicado-recibo/duplicado-rec
     CobroComponent,
     ReciboImprimirComponent,
     DuplicadoReciboComponent,
+    UsuarioComponent,
+    CuentaComponent,
   ],
 })
 export class PagesModule {

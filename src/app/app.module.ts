@@ -25,6 +25,7 @@ import {
   NbToastrModule,
   NbWindowModule,
   NbCardModule,
+  NbButtonModule
 } from '@nebular/theme';
 
 @NgModule({
@@ -51,6 +52,7 @@ import {
     // MenuItem,
     TableModule,
     // NumerosALetras,
+    NbButtonModule,
   ],
   bootstrap: [AppComponent],
 })

@@ -73,50 +73,31 @@
         </div>
     </div>
     <div class="col-6">
-        <p-table id="export" #dt [value]="listMedidorMedidicon" [autoLayout]="true" [rows]="10">
+        <p-table id="export" #dt [value]="listMedidorMedidicon" styleClass="p-datatable-sm" [autoLayout]="true" [rows]="10">
             <ng-template pTemplate="caption">
                 <div style="text-align: right;">
                     <h3 class=" text-center"> HISTORIAL DE CONSUMO </h3>
-                    <!--<i class="fa fa-search" style="margin:4px 4px 0 0;"></i>-->
-                    <!--<input type="text" pInputText size="50" placeholder="Global Filter"-->
-                           <!--(input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto;">-->
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th scope="col">Lecturacion</th>
-                    <!--<th scope="col">Lectura Act</th>-->
+                    <th scope="col">Lec Ant</th>
+                    <th scope="col">Lec Act</th>
                     <th scope="col">Periodo</th>
                     <th scope="col">Consumo</th>
                     <th scope="col">Total</th>
-                    <!--<th scope="col">Fecha Emision</th>-->
                     <th scope="col">Pagado</th>
-                    <!--<th scope="col">Sucursal</th>-->
-                    <!-- <th scope="col">Descuento Promo %</th> -->
-                    <!--<th scope="col">Foto</th>-->
-                    <!--<th scope="col">Acción </th>-->
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-row>
                 <tr>
+                    <td>{{ row.lecturaAnt }}</td>
                     <td>{{ row.lecturaAct }}</td>
-                    <!--<td>{{ row.lecturaAct }}</td>-->
                     <td>{{ row.mes }} / {{row.anio}}</td>
                     <td>{{ row.consumo }}</td>
                     <td>{{ row.total }}</td>
-                    <!--<td>{{ row.fechaEmision}}</td>-->
                     <td *ngIf="row.pagado==0">NO</td>
                     <td *ngIf="row.pagado==1">SI</td>
-                    <!--<td>{{ row.categoria }}</td>-->
-                    <!--<td>{{row.nombreSucursal}}</td>-->
-                    <!-- <td align="right">{{ row.descuentoPromo }} </td> -->
-                    <!--<td><img id="myImg" [src]="row.foto" src="/assets/img/gears.gif" width="80px" height="80px"/></td>-->
-                    <!--<td>-->
-                        <!--<nb-actions size="small">-->
-                            <!--&lt;!&ndash;<nb-action <i class="ion-android-clipboard"></i> (click)="editar(row)"></nb-action>&ndash;&gt;-->
-                            <!--<nb-action style="padding: inherit;" icon="credit-card-outline" (click)="showDialog(row)"></nb-action>-->
-                        <!--</nb-actions>-->
-                    <!--</td>-->
                 </tr>
             </ng-template>
         </p-table>
@@ -198,50 +179,31 @@
         </div>
     </div>
     <div class="col-6">
-        <p-table id="export" #dt [value]="listMedidorMedidicon" [autoLayout]="true" [rows]="10">
+        <p-table id="export" #dt [value]="listMedidorMedidicon" styleClass="p-datatable-sm" [autoLayout]="true" [rows]="10">
             <ng-template pTemplate="caption">
                 <div style="text-align: right;">
                     <h3 class=" text-center"> HISTORIAL DE CONSUMO </h3>
-                    <!--<i class="fa fa-search" style="margin:4px 4px 0 0;"></i>-->
-                    <!--<input type="text" pInputText size="50" placeholder="Global Filter"-->
-                           <!--(input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto;">-->
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th scope="col">Lecturacion</th>
-                    <!--<th scope="col">Lectura Act</th>-->
+                    <th scope="col">Lec Ant</th>
+                    <th scope="col">Lec Act</th>
                     <th scope="col">Periodo</th>
                     <th scope="col">Consumo</th>
                     <th scope="col">Total</th>
-                    <!--<th scope="col">Fecha Emision</th>-->
                     <th scope="col">Pagado</th>
-                    <!--<th scope="col">Sucursal</th>-->
-                    <!-- <th scope="col">Descuento Promo %</th> -->
-                    <!--<th scope="col">Foto</th>-->
-                    <!--<th scope="col">Acción </th>-->
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-row>
                 <tr>
+                    <td>{{ row.lecturaAnt }}</td>
                     <td>{{ row.lecturaAct }}</td>
-                    <!--<td>{{ row.lecturaAct }}</td>-->
                     <td>{{ row.mes }} / {{row.anio}}</td>
                     <td>{{ row.consumo }}</td>
                     <td>{{ row.total }}</td>
-                    <!--<td>{{ row.fechaEmision}}</td>-->
                     <td *ngIf="row.pagado==0">NO</td>
                     <td *ngIf="row.pagado==1">SI</td>
-                    <!--<td>{{ row.categoria }}</td>-->
-                    <!--<td>{{row.nombreSucursal}}</td>-->
-                    <!-- <td align="right">{{ row.descuentoPromo }} </td> -->
-                    <!--<td><img id="myImg" [src]="row.foto" src="/assets/img/gears.gif" width="80px" height="80px"/></td>-->
-                    <!--<td>-->
-                        <!--<nb-actions size="small">-->
-                            <!--&lt;!&ndash;<nb-action <i class="ion-android-clipboard"></i> (click)="editar(row)"></nb-action>&ndash;&gt;-->
-                            <!--<nb-action style="padding: inherit;" icon="credit-card-outline" (click)="showDialog(row)"></nb-action>-->
-                        <!--</nb-actions>-->
-                    <!--</td>-->
                 </tr>
             </ng-template>
         </p-table>

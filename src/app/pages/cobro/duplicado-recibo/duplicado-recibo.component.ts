@@ -89,7 +89,7 @@ export class DuplicadoReciboComponent implements OnInit {
     const doc = new jsPDF('p', 'pt', [624,794]);
     const options = {
       background: 'white',
-      scale: 1
+      scale: 0.8
     };
     html2canvas(DATA, options).then((canvas) => {
 
