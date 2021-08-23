@@ -93,7 +93,7 @@
                 <tr>
                     <td>{{ row.lecturaAnt }}</td>
                     <td>{{ row.lecturaAct }}</td>
-                    <td>{{ row.mes }} / {{row.anio}}</td>
+                    <td>{{mesArray[row.mes-1]}} / {{row.anio}}</td>
                     <td>{{ row.consumo }}</td>
                     <td>{{ row.total }}</td>
                     <td *ngIf="row.pagado==0">NO</td>
@@ -199,7 +199,7 @@
                 <tr>
                     <td>{{ row.lecturaAnt }}</td>
                     <td>{{ row.lecturaAct }}</td>
-                    <td>{{ row.mes }} / {{row.anio}}</td>
+                    <td>{{mesArray[row.mes-1]}} / {{row.anio}}</td>
                     <td>{{ row.consumo }}</td>
                     <td>{{ row.total }}</td>
                     <td *ngIf="row.pagado==0">NO</td>

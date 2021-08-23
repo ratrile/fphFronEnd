@@ -26,6 +26,7 @@ export class ReciboImprimirComponent implements OnInit {
   fechaHoy: any;
   mes: any;
   anio: any;
+  public mesArray = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
   ngOnInit(): void {
 
     // this.letras = NumerosALetras(55);
@@ -38,7 +39,7 @@ export class ReciboImprimirComponent implements OnInit {
               this.cabezaRecibo =  res[0];
               this.cabezaRecibo.fechaHoy = new Date().toISOString().slice(0, 10);  //para guardar
               this.cabezaRecibo.fechaRecivo = moment().format('DD/MM/YYYY');  //solo muestra pdf
-              this.cabezaRecibo.mes = new Date(this.cabezaRecibo.fechaMedicion).getMonth() + 1;;
+              this.cabezaRecibo.mes = this.mesArray[new Date(this.cabezaRecibo.fechaMedicion).getMonth()];
               this.cabezaRecibo.anio = new Date(this.cabezaRecibo.fechaMedicion).getFullYear();
               if (typeof this.cabezaRecibo.mora === 'undefined') {
                   this.cabezaRecibo.mora = 0;

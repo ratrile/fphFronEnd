@@ -26,6 +26,7 @@ export class DuplicadoReciboComponent implements OnInit {
   mes: any;
   anio: any;
   duplicado: any;
+  public mesArray = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
   ngOnInit(): void {
 
@@ -34,7 +35,7 @@ export class DuplicadoReciboComponent implements OnInit {
           this.duplicado =  res[0];
          // this.cabezaRecibo.fechaHoy = new Date().toISOString().slice(0, 10);  //para guardar
           this.duplicado.fechaRecivo = moment(this.duplicado.fechaEmision).format('DD/MM/YYYY');  //solo muestra pdf
-          this.duplicado.mes = new Date(this.duplicado.fechaEmision).getMonth() + 1;;
+          this.duplicado.mes = this.mesArray[new Date(this.duplicado.fechaEmision).getMonth()];
           this.duplicado.anio = new Date(this.duplicado.fechaEmision).getFullYear();
           if (typeof this.duplicado.mora === 'undefined') {
             this.duplicado.mora = 0;
