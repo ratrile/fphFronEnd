@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ServicioService } from '../../servicio/servicio.service';
 
 @Component({
-  selector: 'ngx-usuario',
-  templateUrl: './usuario.component.html',
-  styleUrls: ['./usuario.component.scss']
+  selector: 'ngx-tarifa',
+  templateUrl: './tarifa.component.html',
+  styleUrls: ['./tarifa.component.scss']
 })
-export class UsuarioComponent implements OnInit {
+export class TarifaComponent implements OnInit {
 
-  ListaDeUsuario: any;
-  usuario: any={
-    name: "",
-    ci: 0,
-    direccion: "",
-    numero:0
+  ListaDeTarifas: any;
+  tarifaEdit: any={
+    minimo: "",
+    costoMinimo:"",
+    costoAdicional: "",
+ 
   };
   display: boolean = false;
   deuda : any ={
@@ -25,7 +25,6 @@ export class UsuarioComponent implements OnInit {
     Monto_Registrado:"",
     Activo:1
   };
-  
   row :any;
   displayEliminar: boolean = false;
   nombreAccion: any;
@@ -33,10 +32,10 @@ export class UsuarioComponent implements OnInit {
   constructor(private servicio: ServicioService) { }
 
   ngOnInit(): void {
-    this.servicio.getAllusuario().subscribe(
+    this.servicio.listaTarifas().subscribe(
       (res: any) => {
        // this.display = false;
-        this.ListaDeUsuario = res;
+        this.ListaDeTarifas = res;
         //this.ListaDeCompromisos = res['data'];
         //this.source = this.data.data;
         console.log(res);
@@ -48,27 +47,25 @@ export class UsuarioComponent implements OnInit {
 
   editar(row){
     console.log(row);
-    this.usuario =row;
+    this.tarifaEdit =row;
     this.display = true;
     this.nombreAccion = "Editar"
   }
   nuevo(){
     this.display = true;
     this.nombreAccion = "Agregar";
+    this.tarifaEdit = {};
   }
 
-  cancelarGuardarUsuario(){
+  cancelarGuardarTarifa(){
     this.display = false;
-    this.usuario  ={};
+    this.tarifaEdit  ={};
   }
 
-  GuardarUsuarioTrue(usuario){
-    console.log(usuario);
-    usuario.detalle = "null";
-    usuario.estado = 1;
-    usuario.fecha = new Date().toISOString().slice(0, 10);
-
-    this.servicio.createUsuario(usuario).subscribe(
+  GuardarTarifaTrue(tarifa){
+    console.log(tarifa);
+    tarifa.activo = 1;
+    this.servicio.crearTarifa(tarifa).subscribe(
       (res: any) => {
         this.display = false;
         this.ngOnInit();
@@ -81,9 +78,9 @@ export class UsuarioComponent implements OnInit {
         console.log(err);
       })
   }
-  EditarUsuarioTrue(usuario){
-    console.log(usuario);
-    this.servicio.updateUsuario(usuario).subscribe(
+  EditarTarifaTrue(tarifa){
+    console.log(tarifa);
+    this.servicio.editarTarifa(tarifa).subscribe(
       (res: any) => {
         this.display = false;
         this.row={};
@@ -100,6 +97,22 @@ export class UsuarioComponent implements OnInit {
   cancelarEliminar(){
     this.row={};
     this.displayEliminar = false;
+  }
+
+  seleccionar(row){
+    this.servicio.ElegirTarifa(row).subscribe(
+      (res: any) => {
+        //this.display = false;
+        //this.row={};
+        this.ngOnInit();
+       // this.ListaDeCompromisos = res['data'];
+        //this.ListaDeCompromisos = res['data'];
+        //this.source = this.data.data;
+        console.log(res.data);
+      },
+      err => {
+        console.log(err);
+      })
   }
 
 

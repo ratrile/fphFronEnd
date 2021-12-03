@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { MENU_ITEMS } from './pages-menu';
+import { MENU_ITEMS, MENU_ITEM_LECTURADOR } from './pages-menu';
+import { ServicioService } from '../servicio/servicio.service';
 
 @Component({
   selector: 'ngx-pages',
@@ -13,6 +14,15 @@ import { MENU_ITEMS } from './pages-menu';
   `,
 })
 export class PagesComponent {
-
-  menu = MENU_ITEMS;
+ menu : any;
+  constructor(private servicio: ServicioService) { }
+  ngOnInit(): void {
+    if (this.servicio.privilegio == 1) {
+      this.menu = MENU_ITEMS;
+    }
+    if(this.servicio.privilegio == 2){
+      this.menu = MENU_ITEM_LECTURADOR;
+    }
+  }
+  //menu = MENU_ITEMS;
 }

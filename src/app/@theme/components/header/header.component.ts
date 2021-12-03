@@ -3,8 +3,11 @@ import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeServ
 
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import {Router} from '@angular/router';
+
+import { ServicioService} from '../../../servicio/servicio.service'
 
 @Component({
   selector: 'ngx-header',
@@ -38,14 +41,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  items = [ { title: 'Profile' }, { title: 'Log out' } ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
               private userService: UserData,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              public servicio: ServicioService,
+              public router: Router) {
   }
 
   ngOnInit() {
@@ -71,6 +76,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe(themeName => this.currentTheme = themeName);
       this.user.name = "FPH";   //todo eliminar esto despues
       console.log(this.user, 'eliminar');
+
+      this.menuService.onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === 'my-context-menu'),
+        map(({ item: { title } }) => title),
+      )
+      .subscribe(title => title == 'Log out' ? this.salir() : console.log(title));
+  
   }
 
   ngOnDestroy() {
@@ -92,5 +105,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  salir() {
+    console.log('aqui');
+    this.servicio.privilegio = 0; 
+    this.router.navigate(['/login']);
   }
 }

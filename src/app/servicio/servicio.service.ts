@@ -13,6 +13,8 @@ import {
 export class ServicioService {
 
   cobro: any = {};
+  privilegio: any = 0;
+  user: any = {};
 
   constructor(private http: HttpClient,  private toastrService: NbToastrService) { }
 
@@ -70,6 +72,31 @@ export class ServicioService {
   updateUsuario(obj: any){
     return this.http.post(`api/usuario/editar`, obj);
   }
+
+  listaTarifas():Observable<any> {
+    return this.http.get(`api/configuracion/listaTarifa`);
+  }
+
+  editarTarifa(obj: any):Observable<any> {
+    return this.http.post(`api/configuracion/editTarifa`, obj);
+  }
+
+  crearTarifa(obj: any):Observable<any> {
+    return this.http.post(`api/configuracion/nuevaTarifa`, obj);
+  }
+
+  ElegirTarifa(obj: any):Observable<any> {
+    return this.http.post(`api/configuracion/elegirTarifa`, obj);
+  }
+
+  tarifaActual():Observable<any> {
+    return this.http.get(`api/configuracion/tarifaActual`);
+  }
+  login( user: any):Observable<any>{
+    console.log(user);
+    return this.http.post(`api/login`,user);
+  }
+
 
   showToast(type: NbComponentStatus, title: string, body: string) {
     const config = {

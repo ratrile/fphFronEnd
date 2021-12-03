@@ -1,0 +1,93 @@
+<nb-card>
+    <nb-card-header>
+        <div class="row">
+            <div class="col-md-1" style="max-width: 36px">
+                <nb-actions size="small">
+                    <!--<nb-action <i class="ion-android-clipboard"></i> (click)="editar(row)"></nb-action>-->
+                    <nb-action  style="padding: inherit;" icon="plus-circle-outline" (click)="nuevo()"></nb-action>
+                </nb-actions>
+            </div>
+            <div class="col-md-11">Lista de Tarifas</div>
+        </div>
+        
+        
+    </nb-card-header>
+    <nb-card-body>
+        <p-table id="export" #dt [value]="ListaDeTarifas" selectionMode="single" [autoLayout]="true" [paginator]="true" [rows]="10"
+            [globalFilterFields]="['idUsuario','name','ci', 'direccion','numero']">
+            <ng-template pTemplate="caption">
+                <div style="text-align: right;">
+                    <i class="fa fa-search" style="margin:4px 4px 0 0;"></i>
+                    <input type="text" pInputText size="50" placeholder="Id, Nombre, CI, Direccion, Medidor"
+                           (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto;">
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Cant. Cubo Min.</th>
+                    <th scope="col">Cos. Min. Cubo</th>
+                    <th scope="col">Cos. Cubo Adic.</th>
+                    <th scope="col">Detalle</th>
+                    <th scope="col">Activo</th>
+                    <!--<th scope="col">Sucursal</th>-->
+                    <!-- <th scope="col">Descuento Promo %</th> -->
+                    <!--<th scope="col">Foto</th>-->
+                    <th scope="col">Acción </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.cantidadMinimaCubo }}</td>
+                    <td>{{ row.costoMinimoConsumo }}</td>
+                    <td>{{ row.costoCuboAdicional }}</td>
+                    <td>{{ row.detalle }}</td>
+                    <td *ngIf="row.activo == 0">No</td>
+                    <td *ngIf="row.activo == 1">Si</td>
+                    <td>
+                        <nb-actions size="small">
+                            <nb-action  style="padding: inherit;" icon="checkmark-outline" (click)="seleccionar(row)" [disabled]="row.activo==1"></nb-action>
+                            <nb-action  style="padding: inherit;" icon="clipboard-outline" (click)="editar(row)"></nb-action>
+                        </nb-actions>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </nb-card-body>
+</nb-card>
+
+<p-dialog header="{{nombreAccion}} Tarifa" [(visible)]="display"  [style]="{width: '830px', height: '390px'}">
+    <div class="row">
+        <div class="col-md-12">
+           <nb-card >
+                <nb-card-body> 
+                  <div class="row">
+                    <div class="col-md-12">
+                        <label class="label"><h4>Tarifa</h4></label>
+                    </div>        
+                    <div class="col-md-12">
+                        <label class="label">Cantidad Cubos Minimo:</label>
+                        <input type="text"   nbInput fullWidth fieldSize="tiny" [(ngModel)]="tarifaEdit.cantidadMinimaCubo">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="label">Costo Minimo Cubo:</label>
+                        <input type="number" nbInput fullWidth fieldSize="tiny" [(ngModel)]="tarifaEdit.costoMinimoConsumo">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="label">Costo Cubo Adicional:</label>
+                        <input type="text" nbInput fullWidth fieldSize="tiny" [(ngModel)]="tarifaEdit.costoCuboAdicional">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="label">Detalle :</label>
+                        <input type="text" nbInput fullWidth fieldSize="tiny" [(ngModel)]="tarifaEdit.detalle">
+                    </div>
+                  </div>
+               </nb-card-body>
+            </nb-card>
+        </div>
+            <div class="col-md-4 " *ngIf="nombreAccion == 'Agregar'"><button nbButton hero status="success" (click)="GuardarTarifaTrue(tarifaEdit)">Guardar</button></div>
+            <div class="col-md-4 " *ngIf="nombreAccion == 'Editar'"><button nbButton hero status="success" (click)="EditarTarifaTrue(tarifaEdit)">Guardar</button></div>
+            <div class="col-md-2 "><button nbButton hero status="danger" (click)="cancelarGuardarTarifa()">Cancelar</button></div>
+    </div>
+</p-dialog>

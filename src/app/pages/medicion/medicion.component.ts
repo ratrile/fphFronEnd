@@ -117,6 +117,7 @@ export class MedicionComponent implements OnInit {
     // this.source = new LocalDataSource(this.data);
   }
 
+  tarifaActual:any ={};
   ngOnInit(): void {
     // this.socioMedidor.fechaMedicion = new Date();
     // console.log(this.socioMedidor.fechaMedicion);
@@ -128,6 +129,16 @@ export class MedicionComponent implements OnInit {
         err => {
           console.log(err);
         },
+    );
+
+    this.servicio.tarifaActual().subscribe(
+      res => {
+        this.tarifaActual =  res[0];
+        console.log(res[0]);
+      },
+      err => {
+        console.log(err);
+      },
     );
     // this.source.load(this.data);
     // console.log(this.source);
@@ -221,11 +232,11 @@ onCustomAction(event) {
         // if(lectura.lectura)
         if(lectura.lectura >= lectura.lecturaAct){
             this.socioMedidor.consumo = lectura.lectura - lectura.lecturaAct;
-            if (this.socioMedidor.consumo <= 5) {
-                this.socioMedidor.total = 20;
-            } else {
-                this.socioMedidor.total = this.socioMedidor.consumo * 4;
-            }
+            if (this.socioMedidor.consumo <= this.tarifaActual.cantidadMinimaCubo) {
+                this.socioMedidor.total = this.tarifaActual.costoMinimoConsumo;
+            }if(this.socioMedidor.consumo > this.tarifaActual.cantidadMinimaCubo){
+              this.socioMedidor.total =this.tarifaActual.costoMinimoConsumo + ((this.socioMedidor.consumo- this.tarifaActual.cantidadMinimaCubo) * this.tarifaActual.costoCuboAdicional);
+            } 
             this.gen = true;
         } else{
             this.servicio.showToast( 'warning', 'Notificación', 'El valor de lectura tiene que ser mayor a la lectura actual');

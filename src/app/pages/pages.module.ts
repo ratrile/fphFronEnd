@@ -28,6 +28,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import { DuplicadoReciboComponent } from './cobro/duplicado-recibo/duplicado-recibo.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { CuentaComponent } from './cuenta/cuenta.component';
+import { TarifaComponent } from './tarifa/tarifa.component';
 
 @NgModule({
   imports: [
@@ -62,6 +63,7 @@ import { CuentaComponent } from './cuenta/cuenta.component';
     DuplicadoReciboComponent,
     UsuarioComponent,
     CuentaComponent,
+    TarifaComponent,
   ],
 })
 export class PagesModule {

@@ -12,6 +12,7 @@ import {ReciboImprimirComponent} from './cobro/recibo-imprimir/recibo-imprimir.c
 import {DuplicadoReciboComponent} from './cobro/duplicado-recibo/duplicado-recibo.component';
 import { UsuarioComponent } from './usuario/usuario.component'
 import { CuentaComponent } from './cuenta/cuenta.component'
+import { TarifaComponent } from './tarifa/tarifa.component';
 
 const routes: Routes = [{
   path: '',
@@ -102,6 +103,10 @@ const routes: Routes = [{
     {
       path: 'cuenta',
       component: CuentaComponent,
+    },
+    {
+      path: 'tarifas',
+      component: TarifaComponent,
     },
     {
       path: '',

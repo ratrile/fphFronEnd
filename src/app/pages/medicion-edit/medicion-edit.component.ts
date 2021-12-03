@@ -165,10 +165,10 @@ export class MedicionEditComponent implements OnInit {
     // if(lectura.lectura)
     if(lectura.lecturaAct > lectura.lecturaAnt){
       this.socioMedidor.consumo = lectura.lecturaAct - lectura.lecturaAnt;
-      if (this.socioMedidor.consumo <= 5) {
+      if (this.socioMedidor.consumo <= 6) {
         this.socioMedidor.total = 20;
-      } else {
-        this.socioMedidor.total = this.socioMedidor.consumo * 4;
+      }if(this.socioMedidor.consumo > 6){
+        this.socioMedidor.total =20 + ((this.socioMedidor.consumo-6) * 4);
       }
       this.gen = true;
     } else{
