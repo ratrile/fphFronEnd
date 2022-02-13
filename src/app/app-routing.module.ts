@@ -20,7 +20,7 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
-      loadChildren: () => import('./auth /auth.module')
+      loadChildren: () => import('./permiso/permiso.module')
         .then((m) => { return m.AuthModule}),
   },
   { path: '', redirectTo: 'auth', pathMatch: 'full' },

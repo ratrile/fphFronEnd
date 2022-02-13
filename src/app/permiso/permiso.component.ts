@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'ngx-auth',
-  styleUrls: ['auth.component.scss'],
+  styleUrls: ['permiso.component.scss'],
   template: `
     <ngx-login-column-layout>          
       <router-outlet></router-outlet>      

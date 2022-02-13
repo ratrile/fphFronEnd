@@ -28,8 +28,8 @@ import { NbMenuModule,
  } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
-import { AuthRoutingModule } from './auth-routing.module';
-import { AuthComponent } from './auth.component';
+import { AuthRoutingModule } from './permiso-routing.module';
+import { AuthComponent } from './permiso.component';
 
 //import { NbMenuModule } from '@nebular/theme';
 import { MiscellaneousModule } from '../pages/miscellaneous/miscellaneous.module';

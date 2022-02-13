@@ -14,7 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {AccordionModule} from 'primeng/accordion';
 import { FormsModule } from '@angular/forms';
 import {TableModule} from 'primeng/table';
-import { AuthComponent } from './auth /auth.component';
+import { AuthComponent } from './permiso/permiso.component';
 // import {MenuItem} from 'primeng/api';
 // import {NumerosALetras} from 'node_modules/numero-a-letras/build/numeroaletras.js';
 import {
