@@ -21,6 +21,7 @@ export class DuplicadoReciboComponent implements OnInit {
 
   letras: any;
   listMedidorMedidicon: any;
+  listMedidorMedidiconRecibo: any;
   cabezaRecibo: any;
   fechaHoy: any;
   mes: any;
@@ -62,6 +63,16 @@ export class DuplicadoReciboComponent implements OnInit {
           console.log(err);
         },
     );
+
+    this.servicio.listaMedidorMedicionRecibo(this.servicio.cobro.id_medidor).subscribe(
+      res1 => {
+        this.listMedidorMedidiconRecibo =  res1;
+        console.log(res1);
+      },
+      err => {
+        console.log(err);
+      },
+  );
   }
   /*pdf(){
     const title = this.duplicado.idRecibo + ".pdf"

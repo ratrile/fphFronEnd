@@ -47,6 +47,10 @@ export class ServicioService {
     return this.http.get(`api/recibo/lista-medidor-medicion/${idMedidor}`);
   }
 
+  listaMedidorMedicionRecibo(idMedidor):Observable<any> {
+    return this.http.get(`api/recibo/lista-medidor-medicion-recibo/${idMedidor}`);
+  }
+
   cabezeraRecibo(idMedicion):Observable<any> {
     return this.http.get(`api/recibo/cobro/cuerpo/${idMedicion}`);
   }

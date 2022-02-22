@@ -13,7 +13,7 @@
 <p-dialog header="Lecturacion" [(visible)]="displayVariante">
     <!--[modal]="true" [responsive]="true"-->
     <!--[style]="{width: '820px', minWidth: '300px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">-->
-    <p-table id="export" #dt [value]="listMedidorMedidicon" [autoLayout]="true" [paginator]="true" [rows]="10">
+    <p-table id="export" #dt [value]="listMedidorMedidicon" [autoLayout]="true" [paginator]="false" [rows]="5">
         <ng-template pTemplate="caption">
             <div style="text-align: right;">
                 <i class="fa fa-search" style="margin:4px 4px 0 0;"></i>

@@ -22,6 +22,7 @@ export class ReciboImprimirComponent implements OnInit {
   constructor(public servicio: ServicioService, public router: Router) { }
   letras: any;
   listMedidorMedidicon: any;
+  listMedidorMedidiconRecibo: any;
   cabezaRecibo: any;
   fechaHoy: any;
   mes: any;
@@ -67,6 +68,16 @@ export class ReciboImprimirComponent implements OnInit {
             },
         );
 
+        this.servicio.listaMedidorMedicionRecibo(this.servicio.cobro.id_medidor).subscribe(
+          res1 => {
+            this.listMedidorMedidiconRecibo =  res1;
+            console.log(res1);
+          },
+          err => {
+            console.log(err);
+          },
+      );
+
       //this.servicio.maxId().subscribe(
       //    res2 => {
       //        this.cabezaRecibo.id =  res2[0].max + 1;
@@ -88,6 +99,7 @@ export class ReciboImprimirComponent implements OnInit {
     this.pagar.medicion_id = this.servicio.cobro.medicion_id;
     this.pagar.fechaEmision = this.cabezaRecibo.fechaHoy;
     this.pagar.total =  this.cabezaRecibo.totalFinal;
+    
       this.servicio.cobroImprimir(this.pagar).subscribe(
           res => {
               // this.listMedidorMedidicon =  res;
@@ -109,7 +121,7 @@ export class ReciboImprimirComponent implements OnInit {
           err => {
               console.log(err);
           },
-      );
+      );  
   }
 
   pdf() {
