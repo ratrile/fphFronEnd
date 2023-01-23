@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ServicioService } from '../../servicio/servicio.service';
 import { NbDialogService } from '@nebular/theme';
 import { DialogNamePromptComponent } from './dialog-lecturacion/dialog-name-prompt.component';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'ngx-medicion',
@@ -158,10 +159,16 @@ onCustomAction(event) {
     fechaHoy = new Date();
     viewRecord(event) {
      console.log( Number(new Date('1985-01-01')));
+     console.log(this.fechaHoy.getMonth())
+     console.log(this.fechaHoy.getFullYear() )
+     
      
         const fechaMedida = new Date(event.fechaUltimaMedicion);
+        console.log(fechaMedida.getMonth())
+        console.log(fechaMedida.getFullYear())
         console.log( Number(fechaMedida));
-        if ( this.fechaHoy.getMonth()+1 > fechaMedida.getMonth()+1 && this.fechaHoy.getFullYear() >= fechaMedida.getFullYear()){
+        console.log( Number(this.fechaHoy))
+        if ( (this.fechaHoy.getMonth()+1 > fechaMedida.getMonth()+1 && this.fechaHoy.getFullYear() == fechaMedida.getFullYear()) || ( this.fechaHoy.getFullYear() >= fechaMedida.getFullYear())){
             console.log(event);
             this.socioMedidor = event;
             this.socioMedidor.fechaMedicion = new Date().toISOString().slice(0, 10);
